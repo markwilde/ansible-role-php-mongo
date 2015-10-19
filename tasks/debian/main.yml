@@ -1,0 +1,8 @@
+---
+- name: debian | install mongodb module for php
+  apt: name={{apt_package}} state=installed
+
+- name: debian | enable mongodb module for php
+  command: php5enmod {{php_mongo_ini_filename}}
+  args:
+    creates: "{{ansible_local.phpinfo_core.php_config_file_scan_dir}}/{{php_mongo_extension_priority}}-{{php_mongo_ini_filename}}.ini"
